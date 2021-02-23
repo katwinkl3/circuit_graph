@@ -20,7 +20,7 @@
       },
       "value": {
         "type": {
-          "name": "string"
+          "name": "object"
         },
         "required": false,
         "description": "The value displayed in the input."
@@ -31,6 +31,17 @@
         },
         "required": false,
         "description": "Dash-assigned callback that should be called to report property changes\r\nto Dash, to make them available for callbacks."
+      },
+      "clickData": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Data from latest click event. Read-only.",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
       }
     }
   }

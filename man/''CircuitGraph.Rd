@@ -10,7 +10,7 @@ ExampleComponent is an example component. It takes a property, `label`, and di
 }
 
 \usage{
-''CircuitGraph(id=NULL, label=NULL, value=NULL)
+''CircuitGraph(id=NULL, label=NULL, value=NULL, clickData=NULL)
 }
 
 \arguments{
@@ -18,7 +18,9 @@ ExampleComponent is an example component. It takes a property, `label`, and di
 
 \item{label}{Character. A label that will be printed when this component is rendered.}
 
-\item{value}{Character. The value displayed in the input.}
+\item{value}{Named list. The value displayed in the input.}
+
+\item{clickData}{Named list. Data from latest click event. Read-only.}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

@@ -10,18 +10,30 @@ import PropTypes from 'prop-types';
  */
 export default class CircuitGraph extends Component {
     render() {
-        const {id, label, setProps, value, count} = this.props;
+        const {id, label, setProps, value} = this.props;
+        const qubits = [...Array(4).keys()] //TODO: fix
 
 
         return (
             <div id={id}>
                 <div style={{display:'inline-flex'}}>
-                    <div style={{float:'left'}}>
-                        <button >{"Q0"}</button>
+                    <div style={{display:'block'}}>
+                        {qubits.map(val => {
+                            return <button
+                                style={{verticalAlign:'middle'}}
+                                id={val}
+                                onClick={() => {
+                                    this.props.setProps({clickData: {pointValue: val}}); //TODO: Fix this
+                                }}
+                            >
+                                {"Q"+val}
+                            </button>
+                            }
+                        )}
                     </div>
 
                     <div>
-                        <pre style={{lineHeight: '20px'}}>{value}</pre>
+                        <pre style={{lineHeight: '20px'}}>{value.circuit_data}</pre>
                     </div>
                 </div>
 
@@ -32,7 +44,9 @@ export default class CircuitGraph extends Component {
     }
 }
 
-CircuitGraph.defaultProps = {};
+CircuitGraph.defaultProps = {
+    clickData: null
+};
 
 CircuitGraph.propTypes = {
     /**
@@ -48,11 +62,16 @@ CircuitGraph.propTypes = {
     /**
      * The value displayed in the input.
      */
-    value: PropTypes.string,
+    value: PropTypes.object,
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+
+    /**
+     * Data from latest click event. Read-only.
+     */
+    clickData: PropTypes.object
 };

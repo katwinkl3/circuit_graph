@@ -182,8 +182,8 @@ app.layout = html.Div(
             ),
 
             CircuitGraph(
-                id='input',
-                value=circuit_data,
+                id='q-test',
+                value={'circuit_data':circuit_data},
                 label='changed-label'
             ),
 
@@ -265,12 +265,12 @@ app.layout = html.Div(
         # ),
 
 
-        # html.Div([
-        #     dcc.Markdown("""
-        #         **Equation**
-        #     """),
-        #     html.Pre(id='math-data'),
-        # ])
+        html.Div([
+            dcc.Markdown("""
+                **Equation**
+            """),
+            html.Pre(id='test-data'),
+        ]),
 
         # Feature: Expanding Circuit #
         html.P("Sample of Summarized Circuit"),
@@ -282,17 +282,18 @@ app.layout = html.Div(
 )
 
 
+
 @app.callback(
     Output('q-state', 'figure'),
     [Input('q-circuit', 'clickData'), Input('state-count', 'value')])
 def display_click_data(clickData, value):
     return create_state_plot(clickData, value)
 
-# @app.callback(
-#     Output('math-data', 'children'),
-#     Input('q-circuit', 'clickData'))
-# def display_click_data(clickData):
-#     return json.dumps(clickData, indent=2)
+@app.callback(
+    Output('test-data', 'children'),
+    Input('q-test', 'clickData'))
+def display_click_data(clickData):
+    return json.dumps(clickData, indent=2)
 
 @app.callback(
     Output('img', 'src'),

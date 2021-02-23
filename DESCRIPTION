@@ -1,0 +1,13 @@
+Package: circuitGraph
+Title: Quantum circuit graph from Qiskit 
+Version: 0.0.1
+Description: Quantum circuit graph from Qiskit 
+Depends: R (>= 3.0.2)
+Imports: 
+Suggests: 
+License: MIT + file LICENSE
+URL: https://github.com/katwinkl3/circuit-graph
+BugReports: https://github.com/katwinkl3/circuit-graph/issues
+Encoding: UTF-8
+LazyData: true
+KeepSource: true

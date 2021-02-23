@@ -1,0 +1,7 @@
+include circuit_graph/circuit_graph.min.js
+include circuit_graph/circuit_graph.min.js.map
+include circuit_graph/metadata.json
+include circuit_graph/package-info.json
+include README.md
+include LICENSE
+include package.json

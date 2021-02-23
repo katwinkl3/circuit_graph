@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export default class CircuitGraph extends Component {
     render() {
         const {id, label, setProps, value} = this.props;
-        const qubits = [...Array(4).keys()] //TODO: fix
+        const qubits = [...Array(value.width).keys()]
 
 
         return (

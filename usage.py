@@ -183,7 +183,7 @@ app.layout = html.Div(
 
             CircuitGraph(
                 id='q-test',
-                value={'circuit_data':circuit_data},
+                value={'circuit_data':circuit_data, 'width':circuit_x},
                 label='changed-label'
             ),
 

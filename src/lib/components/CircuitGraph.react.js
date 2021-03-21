@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Row, Container, Col} from 'reactstrap';
 
 /**
- * ExampleComponent is an example component.
- * It takes a property, `label`, and
- * displays it.
- * It renders an input with the property `value`
- * which is editable by the user.
+ * Assumes horizontal stack
  */
 export default class CircuitGraph extends Component {
+    constructor(props) {
+        super(props);
+        let circ_state = {}
+        Object.keys(this.props.value.circuit_drawing).map(k => {
+            circ_state[k] = true
+        })
+        this.state = {...circ_state, prevButton:'', gate: 0}
+    }
+
     render() {
         const {id, label, setProps, value} = this.props;
         const qubits = [...Array(value.width).keys()]
@@ -16,36 +23,59 @@ export default class CircuitGraph extends Component {
 
         return (
             <div id={id}>
-                <div style={{display:'inline-flex'}}>
-                    <div style={{display:'block'}}>
-                        {qubits.map(val => {
-                            return <button
-                                style={{verticalAlign:'middle'}}
-                                id={val}
-                                onClick={() => {
-                                    this.props.setProps({clickData: {pointValue: val}}); //TODO: Fix this
-                                }}
-                            >
-                                {"Q"+val}
-                            </button>
-                            }
-                        )}
-                    </div>
+                <Container>
+                    <Row>
+                        <Col style={{sm:1}}>
+                            {qubits.map(val => {
+                                return <Row><button
+                                    style={{width:'30px', height:'30px', fontSize:'16px', marginLeft: '135px', marginTop:'10px'}}
+                                    id={val}
+                                    className={"buttons"}
+                                    onClick={() => {
+                                        console.log(this.state.prevButton)
+                                        this.props.setProps({clickData: {pointValue: val}});
+                                        if (this.state.prevButton != ''){
+                                            document.getElementById(this.state.prevButton).style.backgroundColor = "#F2F2F2"
+                                        }
+                                        document.getElementById(val).style.backgroundColor = "#FAE3A3"
+                                        this.setState({prevButton: val})
+                                    }}
+                                >
+                                    {"Q"+val}
+                                </button></Row>
+                                }
+                            )}
+                        </Col>
+                        <Row style={{paddingRight: '10px'}}>
+                            {Object.keys(value.circuit_drawing).map((k) => {
+                                return <div><pre
+                                    style={{lineHeight: '20px', overflowY:'hidden',
+                                        margin: '0px 0px 0px 0px', padding: '0px 0px 0px'}}
+                                    onClick={() => {
 
-                    <div>
-                        <pre style={{lineHeight: '20px'}}>{value.circuit_data}</pre>
-                    </div>
-                </div>
-
-
-
+                                        this.props.setProps({mapData: this.state.gate})
+                                        this.setState(prevState => {gate: prevState.gate + 1})
+                                    }}
+                                    //{value.circuit_drawing[k][this.state.k]}
+                                >{value.circuit_drawing[k][this.state[k]? 0: 1]}</pre>
+                                <button onClick={() => {
+                                    const update = {}
+                                    update[k] = !this.state[k] //TODO: Not using prevState because yolo (idk how help)
+                                    this.setState(update)
+                                }}>Expand</button>
+                                </div>
+                            })}
+                        </Row>
+                    </Row>
+                </Container>
             </div>
         );
     }
 }
 
 CircuitGraph.defaultProps = {
-    clickData: null
+    clickData: null,
+    mapData: null
 };
 
 CircuitGraph.propTypes = {
@@ -73,5 +103,10 @@ CircuitGraph.propTypes = {
     /**
      * Data from latest click event. Read-only.
      */
-    clickData: PropTypes.object
+    clickData: PropTypes.object,
+
+    /**
+     * Data from latest click event. Read-only.
+     */
+    mapData: PropTypes.number
 };

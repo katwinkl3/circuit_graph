@@ -1,17 +1,17 @@
 % Auto-generated: do not edit by hand
-\name{''CircuitGraph}
+\name{''CircuitMap}
 
-\alias{''CircuitGraph}
+\alias{''CircuitMap}
 
-\title{CircuitGraph component}
+\title{CircuitMap component}
 
 \description{
 Assumes horizontal stack
 }
 
 \usage{
-''CircuitGraph(id=NULL, label=NULL, value=NULL, clickData=NULL,
-mapData=NULL)
+''CircuitMap(id=NULL, label=NULL, value=NULL, clickData=NULL,
+hoverNodeData=NULL)
 }
 
 \arguments{
@@ -23,7 +23,7 @@ mapData=NULL)
 
 \item{clickData}{Named list. Data from latest click event. Read-only.}
 
-\item{mapData}{Numeric. Data from latest click event. Read-only.}
+\item{hoverNodeData}{Named list. Data of hovered node}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

@@ -47,14 +47,15 @@ export default class CircuitGraph extends Component {
                             )}
                         </Col>
                         <Row style={{paddingRight: '10px'}}>
-                            {Object.keys(value.circuit_drawing).map((k) => {
+                            {Object.keys(value.circuit_drawing).map((k, idx) => {
                                 return <div><pre
                                     style={{lineHeight: '20px', overflowY:'hidden',
                                         margin: '0px 0px 0px 0px', padding: '0px 0px 0px'}}
                                     onClick={() => {
 
-                                        this.props.setProps({mapData: this.state.gate})
-                                        this.setState(prevState => {gate: prevState.gate + 1})
+                                        this.props.setProps({mapData: idx})
+                                        // this.props.setProps({mapData: this.state.gate})
+                                        // this.setState(prevState => {gate: prevState.gate + 1})
                                     }}
                                     //{value.circuit_drawing[k][this.state.k]}
                                 >{value.circuit_drawing[k][this.state[k]? 0: 1]}</pre>

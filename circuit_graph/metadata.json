@@ -85,10 +85,15 @@
         "returns": null
       },
       {
-        "name": "toggleQubitInfo",
+        "name": "createErrorLists",
         "docblock": null,
         "modifiers": [],
-        "params": [],
+        "params": [
+          {
+            "name": "error_type",
+            "type": null
+          }
+        ],
         "returns": null
       },
       {
@@ -98,6 +103,30 @@
         "params": [
           {
             "name": "colorArray",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "createLegend",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "error_list",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "createPopUp",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "id",
             "type": null
           }
         ],

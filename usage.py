@@ -320,13 +320,11 @@ app.layout = html.Div(
                     # html.Img(id='q-mapping',style={'right-margin':'5px', 'height':'80%', 'width':'80%'}),
                     CircuitMap(
                         id='q-map',
-                        value={'num_qubits': num_qubits, 'edges': config.coupling_map, 'qubit_info':qubit_info},
+                        value={'num_qubits': num_qubits, 'edges': config.coupling_map, 'qubit_info':qubit_info,
+                               'selection':[]},
                         label='label'
                     ),
-                    # cyto.Cytoscape(
-                    #     id='q-mapping',
-                    #     elements=[]
-                    # )
+
 
 
                 ], style= {
@@ -388,6 +386,13 @@ app.layout = html.Div(
 #     [Input('q-circuit', 'clickData'), Input('state-count', 'value')])
 # def display_click_data(clickData, value):
 #     return create_state_plot(clickData, value)
+
+@app.callback(
+    Output('q-map', 'value'),
+    Input('q-test', 'mapData'))
+def display_mapped_info(mapData):
+    return {'num_qubits': num_qubits, 'edges': config.coupling_map, 'qubit_info': qubit_info,
+            'selection': mapData}
 
 @app.callback(
     Output('q-state', 'figure'),

@@ -325,22 +325,42 @@ app.layout = html.Div(
                         label='label'
                     ),
 
-
-
                 ], style= {
                     'border-radius': '5px',
-                    'background-color':  '#f9f9f9', 'margin': '1px', 'padding': '15px',
+                    'background-color':  '#f9f9f9', 'margin': '5px', 'padding': '15px', 'height': '400px',
                     'position': 'relative', 'box-shadow': '2px 2px 2px lightgrey'
-                })
+                }),
+                html.Div([
+                    html.P("Result Distribution", style={"text-align": 'center'}),
+                    html.Img(src=app.get_asset_url('prob.png'), style={'height':'60%','width':'60%'})
+                ], style={'position': 'relative', 'height':'500px',#'absolute', 'top': '50%', 'left':'50%',
+                       'border-radius': '5px', 'background-color': '#f9f9f9', 'margin': '10px', 'padding': '15px',
+                        'box-shadow': '2px 2px 2px lightgrey'})
+
             ], style={'width':'50%', 'position': 'relative'#'absolute', 'top': '30%', 'left':'10%', 'height':'400px'
                 }),
 
             html.Div([
                 html.Div([
-                    dcc.Markdown(id='qubit_title', children="Individual Qubit State: ", style={"text-align": 'center'}),
+                    dcc.Markdown(id='qubit_title', children="Qubit State: ", style={"text-align": 'center'}),
+                    dcc.Tabs(id='tabs-example', value='Individual States', children=[
+                        dcc.Tab(label='Individual States', value='Individual States'),
+                        dcc.Tab(label='General States', value='General States')],
+                             style={'font-size': '20px', 'height':'35px'}
+                             ),
+
                     dcc.Graph(
-                      id='q-state'
+                      id='q-state',
+                        style={'width':'400px', 'height':'400px'}
                     ),
+                    # dcc.Graph(
+                    #   id='q-state1',
+                    #     style={'width':'100px', 'height':'100px'}
+                    # ),
+                    # dcc.Graph(
+                    #   id='q-state2',
+                    #     style={'width':'100px', 'height':'100px'}
+                    # ),
                     dcc.Slider(
                         id='state-count',
                         min=0,
@@ -348,15 +368,17 @@ app.layout = html.Div(
                         value=0,
                         marks={i:'Depth '+str(i) for i in range(circuit_y+1)}
                     )
-                ], style={'position': 'relative', 'height':'600px',#'absolute', 'top': '50%', 'left':'50%',
+                ], style={'position': 'relative', 'height':'500px',#'absolute', 'top': '50%', 'left':'50%',
                        'border-radius': '5px', 'background-color': '#f9f9f9', 'margin': '10px', 'padding': '15px',
                         'box-shadow': '2px 2px 2px lightgrey'}),
+
                 html.Div([
-                    html.P("Result Distribution", style={"text-align": 'center'}),
-                    html.Img(src=app.get_asset_url('hist.png'), style={'height':'80%','width':'80%'})
+                    html.P("Operation Procedure", style={"text-align": 'center'}),
+
                 ], style={'position': 'relative', 'height':'500px',#'absolute', 'top': '50%', 'left':'50%',
                        'border-radius': '5px', 'background-color': '#f9f9f9', 'margin': '10px', 'padding': '15px',
                         'box-shadow': '2px 2px 2px lightgrey'})
+
 
             ], style={'width': '45%'
                        })
